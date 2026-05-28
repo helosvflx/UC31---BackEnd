@@ -1,20 +1,18 @@
-from flask import Flask, render_template
-from flask import request
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
 @app.route('/login')
 def login():
-    return render_template('formulario.html')
+    return render_template('login.html')
 
+@app.route('/recebedados', methods=['POST'])
+def recebedados():
+    if request.method == 'POST':
+        nome = request.form.get('Nome')
+        email = request.form.get('email')
 
-@app.route('/autenticar', methods=['GET'])
-def autenticar():
-    nome = request.args.get('nome')
-    curso = request.args.get('curso')
-    cidade = request.args.get('cidade')
-    return "{}, {} e {}".format(nome, curso, cidade)
-
+    return "{} e {}".format(nome, email)
 
 if __name__ == '__main__':
     app.run(debug=True)
