@@ -2,17 +2,26 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-@app.route('/login')
-def login():
-    return render_template('login.html')
+@app.route('/inscricao', methods=['GET', 'POST'])
+def inscricao():
 
-@app.route('/recebedados', methods=['POST'])
-def recebedados():
+    mensagem = ""
+
     if request.method == 'POST':
-        nome = request.form.get('Nome')
+        nickname = request.form.get('nickname')
+        jogo = request.form.get('jogo')
         email = request.form.get('email')
 
-    return "{} e {}".format(nome, email)
+        if not nickname or not jogo or not email:
+            mensagem = "Preencha todos os campos obrigatórios."
 
-if __name__ == '__main__':
+        elif len(nickname) < 4:
+            mensagem = "Preencha todos os campos obrigatórios."
+
+        else:
+            mensagem = "Inscrição realizada com sucesso!"
+
+    return render_template('inscricao.html', mensagem=mensagem)
+
+if __name__ == "__main__":
     app.run(debug=True)
