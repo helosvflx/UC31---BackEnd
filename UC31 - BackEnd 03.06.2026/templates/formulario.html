@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Alunos</title>
+
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #06152d,
+        #0a2348,
+        #102f63
+    );
+}
+
+.container{
+    width:100%;
+    max-width:950px;
+
+    background:white;
+
+    border-radius:30px;
+    overflow:hidden;
+
+    display:flex;
+
+    box-shadow:
+    0 30px 80px rgba(0,0,0,.45);
+}
+
+.lado-esquerdo{
+    width:40%;
+
+    background:
+    linear-gradient(
+        180deg,
+        #081c3a,
+        #0f2e61
+    );
+
+    color:white;
+
+    padding:50px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    border-right:4px solid #d4af37;
+}
+
+.lado-esquerdo h1{
+    font-size:2.5rem;
+    color:#d4af37;
+    margin-bottom:20px;
+}
+
+.lado-esquerdo p{
+    line-height:1.8;
+    color:#e2e8f0;
+}
+
+.lado-direito{
+    width:60%;
+    padding:45px;
+}
+
+.titulo{
+    margin-bottom:30px;
+}
+
+.titulo h2{
+    color:#081c3a;
+    font-size:2rem;
+    margin-bottom:5px;
+}
+
+.titulo p{
+    color:#64748b;
+}
+
+form{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.campo-grande{
+    grid-column:span 2;
+}
+
+input{
+    padding:16px;
+
+    border:2px solid #e2e8f0;
+
+    border-radius:14px;
+
+    font-size:15px;
+
+    transition:.3s;
+}
+
+input:focus{
+    outline:none;
+
+    border-color:#d4af37;
+
+    box-shadow:
+    0 0 0 4px rgba(212,175,55,.18);
+}
+
+button{
+    grid-column:span 2;
+
+    padding:17px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #d4af37,
+        #f4d03f
+    );
+
+    color:#081c3a;
+
+    font-size:16px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 12px 25px rgba(212,175,55,.35);
+}
+
+button:active{
+    transform:scale(.98);
+}
+
+@media(max-width:850px){
+
+    .container{
+        flex-direction:column;
+    }
+
+    .lado-esquerdo,
+    .lado-direito{
+        width:100%;
+    }
+
+    form{
+        grid-template-columns:1fr;
+    }
+
+    .campo-grande,
+    button{
+        grid-column:span 1;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="lado-esquerdo">
+        <h1>Cadastro dos Alunos</h1>
+
+        <p>
+            Cadastre-se para participar do curso de programação.
+            Preencha seus dados corretamente para concluir sua inscrição.
+        </p>
+    </div>
+
+    <div class="lado-direito">
+
+        <div class="titulo">
+            <h2>Faça seu Cadastro</h2>
+            <p>Preencha todos os campos abaixo</p>
+        </div>
+
+        <form action="/validacao" method="POST">
+
+            <input class="campo-grande" type="text" name="nome" placeholder="Nome Completo">
+            <input type="email" name="email" placeholder="E-mail">
+            <input type="text" name="telefone" placeholder="Telefone">
+            <input type="text" name="cpf" placeholder="CPF">
+            <input type="text" name="estado" placeholder="Estado">
+            <input type="text" name="cidade" placeholder="Cidade">
+            <input type="text" name="curso" placeholder="Curso">
+            <input type="number" name="idade" placeholder="Idade">
+            <input class="campo-grande" type="password" name="senha" placeholder="Senha">
+
+            <button type="submit">
+                Criar Cadastro
+            </button>
+
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
