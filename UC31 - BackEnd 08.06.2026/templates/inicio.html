@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Temas com Cookies</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="tema-{{ tema }}">
+
+    <div class="card">
+
+        <h1>Cookies no Flask</h1>
+
+        <p>
+            O tema escolhido ficará salvo no navegador.
+        </p>
+
+        <h2>Tema Atual: {{ tema }}</h2>
+
+        <div class="botoes">
+
+            <a href="{{ url_for('trocar_tema', escolha='claro') }}">
+                Tema Claro
+            </a>
+
+            <a href="{{ url_for('trocar_tema', escolha='escuro') }}">
+                Tema Escuro
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
