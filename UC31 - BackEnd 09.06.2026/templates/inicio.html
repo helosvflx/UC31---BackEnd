@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Temas com Cookies</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body class="tema-{{ tema }}">
+
+    <div class="card">
+
+        <h1>Cookies no Flask</h1>
+
+        {% if nome %}
+            <h2>Olá, {{ nome }}!</h2>
+        {% else %}
+            <h2>Bem-vindo visitante!</h2>
+        {% endif %}
+
+        <form action="{{ url_for('salvar_nome') }}" method="POST">
+
+            <input
+                type="text"
+                name="nome"
+                placeholder="Digite seu nome"
+                required>
+
+            <button type="submit">
+                Salvar Nome
+            </button>
+
+        </form>
+
+        <h2>Tema Atual: {{ tema }}</h2>
+
+        <div class="botoes">
+
+            <a href="{{ url_for('trocar_tema', escolha='claro') }}">
+                Tema Claro
+            </a>
+
+            <a href="{{ url_for('trocar_tema', escolha='escuro') }}">
+                Tema Escuro
+            </a>
+
+        </div>
+
+        <div class="botoes">
+
+            <a href="{{ url_for('limpar') }}" class="resetar">
+                Resetar Dados
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
