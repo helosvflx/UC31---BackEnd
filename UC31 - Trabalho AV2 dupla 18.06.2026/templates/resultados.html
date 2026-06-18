@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado da Enquete</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>📊 Resultado Final</h1>
+
+        <p class="total">
+            Total de votos: {{ total }}
+        </p>
+
+        {% for opcao, qtd in votos.items() %}
+
+            <div class="card">
+
+                <h3>{{ opcao }}</h3>
+
+                <p>{{ qtd }} voto(s)</p>
+
+                <p>{{ porcentagens[opcao] }}%</p>
+
+            </div>
+
+        {% endfor %}
+
+        <a href="/" class="resultado">
+            Voltar
+        </a>
+
+    </div>
+
+</body>
+</html>

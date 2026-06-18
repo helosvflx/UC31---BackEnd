@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquete Streaming</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>🎬 Enquete de Streaming</h1>
+
+        <h2>Qual plataforma você mais usa?</h2>
+
+        {% if not votou %}
+
+            <a href="/votar/Netflix" class="botao">Netflix</a>
+
+            <a href="/votar/Disney+" class="botao">Disney+</a>
+
+            <a href="/votar/PrimeVideo" class="botao">Prime Video</a>
+
+        {% else %}
+
+            <p class="mensagem">
+                Você já votou nesta enquete!
+            </p>
+
+        {% endif %}
+
+        <div class="votos">
+            <h3>Votos atuais</h3>
+
+            {% for opcao, qtd in votos.items() %}
+                <p>{{ opcao }}: {{ qtd }}</p>
+            {% endfor %}
+        </div>
+
+        <a href="/resultado" class="resultado">
+            Ver Resultado
+        </a>
+
+    </div>
+
+</body>
+</html>

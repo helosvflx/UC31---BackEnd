@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg, #0f172a, #1e293b);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    width:450px;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+h1{
+    color:#0f172a;
+    margin-bottom:15px;
+}
+
+h2{
+    color:#334155;
+    margin-bottom:25px;
+    font-size:18px;
+}
+
+.botao{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px;
+    border-radius:10px;
+    cursor:pointer;
+    text-decoration:none;
+    display:block;
+    margin:10px 0;
+    transition:.3s;
+}
+
+.botao:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+.resultado{
+    background:#0f172a;
+    color:white;
+    padding:12px 20px;
+    border-radius:10px;
+    text-decoration:none;
+    display:inline-block;
+    margin-top:20px;
+    transition:.3s;
+}
+
+.resultado:hover{
+    background:#1e293b;
+}
+
+.votos{
+    margin-top:20px;
+}
+
+.votos h3{
+    color:#0f172a;
+    margin-bottom:10px;
+}
+
+.votos p{
+    margin:8px 0;
+    color:#334155;
+}
+
+.card{
+    background:#f8fafc;
+    border-left:5px solid #2563eb;
+    padding:15px;
+    margin:12px 0;
+    border-radius:10px;
+}
+
+.card h3{
+    color:#0f172a;
+    margin-bottom:8px;
+}
+
+.card p{
+    margin:5px 0;
+}
+
+.total{
+    font-weight:bold;
+    color:#0f172a;
+    margin-bottom:20px;
+}
+
+.mensagem{
+    color:#dc2626;
+    font-weight:bold;
+    margin-bottom:20px;
+}
