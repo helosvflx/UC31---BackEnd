@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Editar</title>
+</head>
+
+<body>
+
+<h1>Editar Livro</h1>
+
+<form method="POST">
+
+Título:
+<input type="text" name="titulo" value="{{ livro.titulo }}"><br><br>
+
+Autor:
+<input type="text" name="autor" value="{{ livro.autor }}"><br><br>
+
+Ano:
+<input type="text" name="ano" value="{{ livro.ano }}"><br><br>
+
+Categoria:
+<input type="text" name="categoria" value="{{ livro.categoria }}"><br><br>
+
+Quantidade:
+<input type="number" name="quantidade" value="{{ livro.quantidade }}"><br><br>
+
+<button>Salvar</button>
+
+</form>
+
+
+</body>
+</html>

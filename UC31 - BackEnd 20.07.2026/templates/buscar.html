@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Buscar Livro</title>
+</head>
+
+<body>
+
+<h1>Buscar Livro</h1>
+
+<form method="POST">
+
+Título:
+
+<input type="text" name="titulo">
+
+<button>Buscar</button>
+
+</form>
+
+<br>
+
+{% if livro %}
+
+<b>Título:</b> {{ livro.titulo }}<br>
+
+<b>Autor:</b> {{ livro.autor }}<br>
+
+<b>Ano:</b> {{ livro.ano }}<br>
+
+<b>Categoria:</b> {{ livro.categoria }}<br>
+
+<b>Quantidade:</b> {{ livro.quantidade }}<br>
+
+{% endif %}
+
+<h3>{{ mensagem }}</h3>
+
+<br>
+
+<a href="{{ url_for('cadastro') }}">Voltar</a>
+
+
+</body>
+</html>
