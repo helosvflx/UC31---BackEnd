@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAPI - Saúde Mental</title>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome & Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #ffffff, #e8f5f3);
+            min-height: 100vh;
+            color: #1a1a1a;
+            /* Preto suave para melhor contraste */
+        }
+
+        /* Pular para o conteúdo - acessibilidade */
+        .skip-to-content {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #005a4c;
+            /* Cor mais escura para contraste */
+            color: #ffffff;
+            padding: 8px 16px;
+            z-index: 100;
+            text-decoration: none;
+            border-radius: 0 0 4px 0;
+            font-weight: 600;
+        }
+
+        .skip-to-content:focus {
+            top: 0;
+        }
+
+        /* Navbar */
+        .navbar-simples {
+            background: #98DAD2;
+            padding: 12px 30px;
+            border-radius: 16px;
+            margin: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logos {
+            height: 100px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #003d33;
+            /* Cor mais escura para contraste */
+            font-size: 15px;
+            font-weight: 600;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #001a14;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .btn-entrar,
+        .btn-cadastrar {
+            background: #ffffff;
+            color: #003d33;
+            border: 2px solid #003d33;
+            /* Borda mais grossa para contraste */
+            padding: 8px 22px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-cadastrar {
+            background: #003d33;
+            color: #ffffff;
+            border: 2px solid #003d33;
+        }
+
+        .btn-entrar:hover,
+        .btn-cadastrar:hover,
+        .btn-entrar:focus,
+        .btn-cadastrar:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            outline: 3px solid #005a4c;
+            outline-offset: 2px;
+        }
+
+        /* Hero Header */
+        .hero-title {
+            text-align: center;
+            margin: 50px 20px 30px;
+        }
+
+        .hero-title .preto {
+            display: block;
+            color: #1a1a1a;
+            font-size: 48px;
+            font-weight: 700;
+        }
+
+        .hero-title .azul {
+            display: block;
+            color: #005a8c;
+            /* Azul mais escuro para contraste */
+            font-size: 40px;
+            font-weight: 600;
+        }
+
+        /* Carrossel */
+        .carrossel {
+            margin: 0 auto 60px;
+            max-width: 1000px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .carrossel .carousel-item img {
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* Títulos de Seções */
+        .section-title {
+            text-align: center;
+            color: #1a1a1a;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 0 8% 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card-item {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid #d4e8e5;
+            /* Borda para melhor contraste */
+        }
+
+        .card-item:hover,
+        .card-item:focus-within {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            border-color: #005a4c;
+        }
+
+        .card-item .icone {
+            font-size: 44px;
+            color: #003d33;
+            /* Cor mais escura para contraste */
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .card-item h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        .card-item p {
+            color: #333333;
+            /* Cinza escuro para melhor legibilidade */
+            font-size: 15px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .navbar-simples {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .hero-title .preto {
+                font-size: 32px;
+            }
+
+            .hero-title .azul {
+                font-size: 28px;
+            }
+
+            .carrossel .carousel-item img {
+                height: 250px;
+            }
+        }
+
+        /* Estilos para daltonismo (protanopia/deuteranopia) */
+        /* Usa padrões além da cor para diferenciação */
+        .btn-entrar::before {
+            content: "🔑 ";
+            display: inline;
+        }
+
+        .btn-cadastrar::before {
+            content: "✏️ ";
+            display: inline;
+        }
+
+        /* Indicadores visuais além de cor */
+        .card-item .icone i {
+            background: #e8f5f3;
+            padding: 15px;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Garantir contraste nos links de navegação */
+        .nav-links a {
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Link para pular para o conteúdo - acessibilidade -->
+    <a href="#main-content" class="skip-to-content">Pular para o conteúdo principal</a>
+
+    <!-- Navegação -->
+    <nav class="navbar-simples" aria-label="Navegação principal">
+        <img class="logos" src="logo.png" alt="Logo NAPI - Núcleo de Atendimento Psicológico">
+        <ul class="nav-links" role="menubar">
+            <li role="none"><a href="#" role="menuitem">Início</a></li>
+            <li role="none"><a href="#" role="menuitem">Sobre</a></li>
+            <li role="none"><a href="#" role="menuitem">Contato</a></li>
+            <li role="none"><button class="btn-entrar" role="menuitem">Entrar</button></li>
+            <li role="none"><button class="btn-cadastrar" role="menuitem">Cadastre-se</button></li>
+        </ul>
+    </nav>
+
+    <!-- Título Principal -->
+    <header class="hero-title" id="main-content">
+        <h1 class="preto">Sua saúde mental <span class="azul">merece cuidado</span></h1>
+    </header>
+
+    <!-- Carrossel de Destaques -->
+    <div id="carouselExample" class="carrossel carousel slide" data-bs-ride="carousel" aria-label="Destaques do NAPI">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://via.placeholder.com/1200x500/6DB196/FFFFFF?text=Atendimento+Acolhedor"
+                    class="d-block w-100" alt="Atendimento acolhedor com profissionais qualificados">
+            </div>
+            <div class="carousel-item">
+                <img src="https://via.placeholder.com/1200x500/98DAD2/FFFFFF?text=Cuidado+Especializado"
+                    class="d-block w-100" alt="Cuidado especializado para sua saúde mental">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev" aria-label="Slide anterior">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next" aria-label="Próximo slide">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Próximo</span>
+        </button>
+    </div>
+
+    <!-- Seção Sobre o NAPI -->
+    <section class="container my-5 text-center" aria-labelledby="sobre-napi">
+        <h2 id="sobre-napi" class="section-title">O que é o NAPI?</h2>
+        <p class="mx-auto" style="max-width: 700px; color: #333333; line-height: 1.8; font-size: 16px;">
+            O NAPI é um núcleo de atendimento focado em oferecer suporte psicológico acessível, promovendo o bem-estar e
+            a qualidade de vida com profissionais qualificados.
+        </p>
+    </section>
+
+    <!-- Seção Serviços / Serviços Disponibilizados -->
+    <section aria-labelledby="servicos-title">
+        <h2 id="servicos-title" class="section-title">O que disponibilizamos?</h2>
+
+        <div class="cards" role="list">
+            <div class="card-item" role="listitem">
+                <span class="icone" aria-hidden="true"><i class="fa-solid fa-user-doctor"></i></span>
+                <h3>Profissionais Qualificados</h3>
+                <p>Psicólogos experientes e especializados em diferentes áreas da saúde mental.</p>
+            </div>
+
+            <div class="card-item" role="listitem">
+                <span class="icone" aria-hidden="true"><i class="fa-solid fa-calendar-check"></i></span>
+                <h3>Agendamento Fácil</h3>
+                <p>Escolha o melhor horário para você e marque sua consulta em poucos minutos.</p>
+            </div>
+
+            <div class="card-item" role="listitem">
+                <span class="icone" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></span>
+                <h3>Privacidade Garantida</h3>
+                <p>Suas informações e consultas são protegidas com total segurança e confidencialidade.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
